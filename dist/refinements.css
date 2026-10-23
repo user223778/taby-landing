@@ -11,7 +11,7 @@
   --selected-stroke: rgba(123,111,255,.4);
   --ease-out: cubic-bezier(.22,1,.36,1);
 }
-.hero h1 { font-size:clamp(52px,7.8vw,110px); letter-spacing:-.04em; line-height:1.02; }
+.hero h1 { font-size:clamp(44px,6.5vw,90px); letter-spacing:-.04em; line-height:1.02; }
 .section h2,.final-cta h2 { letter-spacing:-.035em; }
 .hero-open { margin-left:22px; font-size:12px; }
 /* The app's selection treatment is reserved for selected controls. */
@@ -160,3 +160,17 @@
 .scroll-ready .ui-table th { padding-block:8px; }
 .scroll-ready .ui-line-total { margin-bottom:8px; }
 .scroll-ready .ui-week strong { padding-block:8px; }
+
+/* Match the app's quiet data-status treatment. */
+.freshness .section-intro { margin-bottom:0; }
+.freshness-example { max-width:550px; margin:32px 0 0; }
+.freshness-status { display:flex; align-items:center; gap:16px; padding:24px 0; border-block:1px solid var(--line); }
+.freshness-dot { width:9px; height:9px; flex-shrink:0; border-radius:50%; background:var(--accent); }
+.freshness-label { display:block; color:var(--muted); font-size:12px; margin-bottom:7px; }
+.freshness-status strong { font-size:22px; font-weight:500; }
+.freshness-source { color:var(--muted); font-size:16px; margin-left:auto; }
+.freshness-example figcaption { color:var(--muted); font-size:12px; margin-top:12px; }
+@media(max-width:580px) {
+  .freshness-status { gap:12px; }
+  .freshness-status strong { font-size:20px; }
+}
