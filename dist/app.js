@@ -89,7 +89,7 @@ document.fonts.ready.then(configureScroll);
 const costToggle = document.querySelector('.calculation-toggle');
 const costValue = document.querySelector('#cost-value');
 let numberAnimation;
-let currentCost = 25.9;
+let currentCost = 25.7;
 function animateCost(target) {
   cancelAnimationFrame(numberAnimation);
   if (reducedMotion.matches) {
@@ -112,11 +112,28 @@ costToggle.querySelectorAll('[data-cost]').forEach(button => button.addEventList
   const discount = button.dataset.cost === 'discount';
   costToggle.style.setProperty('--toggle-index', discount ? 1 : 0);
   costToggle.querySelectorAll('[data-cost]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-  animateCost(discount ? 26.7 : 25.9);
+  animateCost(discount ? 26.5 : 25.7);
   document.querySelector('#cost-label').textContent = discount ? 'Фудкост с учётом скидок' : 'Фудкост продаж без учёта скидок';
   document.querySelector('#cost-difference').textContent = discount ? '+0,8 процентного пункта' : 'Исходный показатель';
-  document.querySelector('#cost-bar').style.width = discount ? '66.75%' : '64.75%';
+  document.querySelector('#cost-bar').style.width = discount ? '66.25%' : '64.25%';
 }));
+
+document.querySelectorAll('[data-mockup-group]').forEach(figure => {
+  const buttons = [...figure.querySelectorAll('[data-mockup-view]')];
+  buttons.forEach((button, index) => button.addEventListener('click', () => {
+    figure.style.setProperty('--mockup-view', index);
+    buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    figure.querySelectorAll('[data-mockup-slide]').forEach(slide => {
+      const current = slide.dataset.mockupSlide === button.dataset.mockupView;
+      slide.classList.toggle('is-current', current);
+      slide.inert = !current;
+      slide.setAttribute('aria-hidden', String(!current));
+    });
+    const openButton = figure.closest('[data-panel]').querySelector('[data-open-image]');
+    openButton.dataset.openImage = button.dataset.mockupView;
+    openButton.dataset.imageTitle = `${figure.dataset.mockupGroup === 'foodcost' ? 'Фудкост' : 'Склад'} · ${button.textContent}`;
+  }));
+});
 
 const dialog = document.querySelector('#image-dialog');
 let dialogTrigger;

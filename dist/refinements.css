@@ -174,3 +174,28 @@
   .freshness-status { gap:12px; }
   .freshness-status strong { font-size:20px; }
 }
+
+/* Vector app screens stay sharp in the landing and enlarged view. */
+.hero-dashboard-image { width:100%; min-width:1000px; height:auto; }
+.mockup-stage { display:grid; overflow-x:auto; overscroll-behavior-x:contain; border:1px solid var(--line); border-radius:14px; background:#0d1120; scrollbar-width:thin; scrollbar-color:#394561 #0d1120; }
+.mockup-slide { grid-area:1/1; min-width:0; opacity:0; visibility:hidden; transform:translateY(7px); transition:opacity .36s ease,transform .45s var(--ease-out),visibility .36s; }
+.mockup-slide.is-current { opacity:1; visibility:visible; transform:none; }
+.mockup-image { display:block; width:100%; height:auto; max-width:none; }
+.mockup-view-toggle { position:relative; isolation:isolate; display:grid; grid-template-columns:1fr 1fr; width:max-content; max-width:100%; padding:4px; margin:0 0 12px auto; border:1px solid var(--line); border-radius:10px; background:#101626; }
+.mockup-view-toggle button { z-index:1; background:none; border:0; border-radius:7px; padding:9px 15px; font-size:13px; color:var(--muted); transition:color .3s ease; }
+.mockup-view-toggle button[aria-pressed=true] { color:var(--text); }
+.mockup-view-thumb { position:absolute; inset:4px auto 4px 4px; width:calc((100% - 8px)/2); border:1px solid var(--selected-stroke); background:var(--selected-fill); border-radius:7px; transform:translateX(calc(var(--mockup-view,0)*100%)); transition:transform .5s var(--ease-out); }
+.mockup-mobile-hint { display:none; }
+.mockup-zoom { width:100%; min-width:1120px; }
+.mockup-zoom-dashboard { min-width:1440px; }
+.metric-track #cost-bar { width:64.25%; }
+@media(max-width:580px) {
+  .mockup-stage { border-radius:10px; }
+  .mockup-image { min-width:660px; }
+  .mockup-view-toggle { margin-left:0; }
+  .mockup-view-toggle button { font-size:12px; padding:10px 12px; }
+  .mockup-mobile-hint { display:block; margin-top:5px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .mockup-slide,.mockup-view-thumb { transition:none; }
+}
